@@ -9,9 +9,15 @@
 #import "WebKit_Updater.h"
 
 @implementation WebKit_Updater
+- (IBAction)bugReport:(id)sender {
+	
+}
 
 - (void)mainViewDidLoad
 {
+	[_authView setString:"system.preferences"];
+	[_authView setAutoupdate:YES];
+	[_authView updateStatus:self];
 }
 
 @end

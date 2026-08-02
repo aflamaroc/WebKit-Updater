@@ -9,8 +9,10 @@
 /* Begin PBXBuildFile section */
 		9C297D4D301E6C10009E1202 /* WebKit_Updater.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C297D4C301E6C10009E1202 /* WebKit_Updater.h */; };
 		9C297D4F301E6C10009E1202 /* WebKit_Updater.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C297D4E301E6C10009E1202 /* WebKit_Updater.m */; };
-		9C297D51301E6C10009E1202 /* WebKit_Updater.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 9C297D50301E6C10009E1202 /* WebKit_Updater.tiff */; };
-		9C297D54301E6C10009E1202 /* WebKit_Updater.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C297D52301E6C10009E1202 /* WebKit_Updater.xib */; };
+		9C297D5C301E6C45009E1202 /* WebKit_Updater.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C297D5A301E6C45009E1202 /* WebKit_Updater.xib */; };
+		9C297D5D301E6C45009E1202 /* WebKitUpdater.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 9C297D5B301E6C45009E1202 /* WebKitUpdater.tiff */; };
+		9C297D60301E6CD4009E1202 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C297D5E301E6CD4009E1202 /* Security.framework */; };
+		9C297D61301E6CD4009E1202 /* SecurityInterface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C297D5F301E6CD4009E1202 /* SecurityInterface.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -18,8 +20,10 @@
 		9C297D4B301E6C10009E1202 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9C297D4C301E6C10009E1202 /* WebKit_Updater.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebKit_Updater.h; sourceTree = "<group>"; };
 		9C297D4E301E6C10009E1202 /* WebKit_Updater.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebKit_Updater.m; sourceTree = "<group>"; };
-		9C297D50301E6C10009E1202 /* WebKit_Updater.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = WebKit_Updater.tiff; sourceTree = "<group>"; };
-		9C297D53301E6C10009E1202 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/WebKit_Updater.xib; sourceTree = "<group>"; };
+		9C297D5A301E6C45009E1202 /* WebKit_Updater.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebKit_Updater.xib; sourceTree = "<group>"; };
+		9C297D5B301E6C45009E1202 /* WebKitUpdater.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = WebKitUpdater.tiff; sourceTree = "<group>"; };
+		9C297D5E301E6CD4009E1202 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		9C297D5F301E6CD4009E1202 /* SecurityInterface.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SecurityInterface.framework; path = System/Library/Frameworks/SecurityInterface.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,6 +31,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C297D60301E6CD4009E1202 /* Security.framework in Frameworks */,
+				9C297D61301E6CD4009E1202 /* SecurityInterface.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -36,6 +42,8 @@
 		9C297D3D301E6C10009E1202 = {
 			isa = PBXGroup;
 			children = (
+				9C297D5E301E6CD4009E1202 /* Security.framework */,
+				9C297D5F301E6CD4009E1202 /* SecurityInterface.framework */,
 				9C297D49301E6C10009E1202 /* WebKit Updater */,
 				9C297D48301E6C10009E1202 /* Products */,
 			);
@@ -54,8 +62,8 @@
 			children = (
 				9C297D4C301E6C10009E1202 /* WebKit_Updater.h */,
 				9C297D4E301E6C10009E1202 /* WebKit_Updater.m */,
-				9C297D50301E6C10009E1202 /* WebKit_Updater.tiff */,
-				9C297D52301E6C10009E1202 /* WebKit_Updater.xib */,
+				9C297D5A301E6C45009E1202 /* WebKit_Updater.xib */,
+				9C297D5B301E6C45009E1202 /* WebKitUpdater.tiff */,
 				9C297D4A301E6C10009E1202 /* Supporting Files */,
 			);
 			path = "WebKit Updater";
@@ -138,8 +146,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9C297D51301E6C10009E1202 /* WebKit_Updater.tiff in Resources */,
-				9C297D54301E6C10009E1202 /* WebKit_Updater.xib in Resources */,
+				9C297D5D301E6C45009E1202 /* WebKitUpdater.tiff in Resources */,
+				9C297D5C301E6C45009E1202 /* WebKit_Updater.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,17 +163,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		9C297D52301E6C10009E1202 /* WebKit_Updater.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9C297D53301E6C10009E1202 /* Base */,
-			);
-			name = WebKit_Updater.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		9C297D55301E6C10009E1202 /* Debug */ = {
@@ -249,6 +246,7 @@
 				INFOPLIST_FILE = "WebKit Updater/Info.plist";
 				INSTALL_PATH = "$(HOME)/Library/PreferencePanes";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.9;
 				WRAPPER_EXTENSION = prefPane;
 			};
 			name = Debug;
@@ -260,6 +258,7 @@
 				INFOPLIST_FILE = "WebKit Updater/Info.plist";
 				INSTALL_PATH = "$(HOME)/Library/PreferencePanes";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.9;
 				WRAPPER_EXTENSION = prefPane;
 			};
 			name = Release;

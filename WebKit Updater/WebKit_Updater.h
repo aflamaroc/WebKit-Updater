@@ -7,9 +7,10 @@
 //
 
 #import <PreferencePanes/PreferencePanes.h>
+#import <SecurityInterface/SFAuthorizationView.h>
 
 @interface WebKit_Updater : NSPreferencePane
-
+@property (weak) IBOutlet SFAuthorizationView *authView;
 - (void)mainViewDidLoad;
 
 @end
