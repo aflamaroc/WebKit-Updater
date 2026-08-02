@@ -9,6 +9,11 @@
                 <outlet property="_window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
                 <outlet property="authView" destination="k4w-Ze-Y60" id="3ed-Fn-0S8"/>
                 <outlet property="authview" destination="k4w-Ze-Y60" id="cU7-He-Ms4"/>
+                <outlet property="dlWebKitButton" destination="giE-va-YIz" id="sFP-34-f82"/>
+                <outlet property="helpButton" destination="fXw-2T-yym" id="Ug4-1N-Gg7"/>
+                <outlet property="helpPopover" destination="fPL-l5-dp3" id="0tA-u7-cgY"/>
+                <outlet property="s7OTAbutton" destination="2kK-gI-PlL" id="Uny-6y-Q0z"/>
+                <outlet property="s7onDiskButton" destination="dBL-zD-UuN" id="KjW-pP-Fva"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
@@ -52,7 +57,7 @@
                     <button verticalHuggingPriority="750" id="giE-va-YIz">
                         <rect key="frame" x="16" y="175" width="151" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="push" title="Download WebKit" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="b9b-e8-Ccu">
+                        <buttonCell key="cell" type="push" title="Download WebKit" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="b9b-e8-Ccu">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
@@ -71,13 +76,13 @@
                     <button verticalHuggingPriority="750" id="2kK-gI-PlL">
                         <rect key="frame" x="16" y="89" width="169" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="push" title="Restore Safari 7 OTA" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ZL7-61-sWs">
+                        <buttonCell key="cell" type="push" title="Restore Safari 7 OTA" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ZL7-61-sWs">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                     </button>
                     <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="W33-nb-3gP">
-                        <rect key="frame" x="135" y="279" width="221" height="17"/>
+                        <rect key="frame" x="128" y="266" width="221" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="You shouldn't see this." id="bPe-go-Hhr">
                             <font key="font" metaFont="system"/>
@@ -97,16 +102,16 @@
                     <button verticalHuggingPriority="750" id="dBL-zD-UuN">
                         <rect key="frame" x="16" y="133" width="189" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="push" title="Restore Safari 7 on disk" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cnb-rz-GoS">
+                        <buttonCell key="cell" type="push" title="Restore Safari 7 on disk" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cnb-rz-GoS">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="hax-ke-PJK">
-                        <rect key="frame" x="310" y="341" width="352" height="17"/>
+                        <rect key="frame" x="82" y="305" width="125" height="11"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="A few lines of text from the Redsn0w UI 😭 (no offense)" id="Zgg-9P-AB9">
-                            <font key="font" metaFont="system"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="&quot;This looks like redsn0w&quot; -willa" id="Zgg-9P-AB9">
+                            <font key="font" metaFont="system" size="8"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
@@ -130,16 +135,19 @@
                         </textFieldCell>
                     </textField>
                     <progressIndicator hidden="YES" maxValue="100" indeterminate="YES" style="bar" id="oUk-SC-e7C">
-                        <rect key="frame" x="371" y="277" width="96" height="20"/>
+                        <rect key="frame" x="364" y="264" width="96" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     </progressIndicator>
                     <button horizontalHuggingPriority="750" verticalHuggingPriority="750" id="fXw-2T-yym">
-                        <rect key="frame" x="637" y="17" width="25" height="25"/>
+                        <rect key="frame" x="625" y="10" width="25" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5IS-jW-CVX">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
+                        <connections>
+                            <action selector="showHelpPopover:" target="-2" id="lgl-3w-7gu"/>
+                        </connections>
                     </button>
                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" id="99Y-ID-Y0I">
                         <rect key="frame" x="22" y="310" width="48" height="48"/>
@@ -150,10 +158,19 @@
                         <rect key="frame" x="20" y="13" width="450" height="58"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     </customView>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="aXr-mN-ztx">
+                        <rect key="frame" x="483" y="341" width="167" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Thank you Wowfunhappy!" id="des-pK-vky">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                 </subviews>
             </view>
         </window>
-        <viewController id="lsB-Sx-fCm" userLabel="Popover View Controller"/>
+        <viewController nibName="popover" id="lsB-Sx-fCm" userLabel="Popover View Controller"/>
         <popover id="fPL-l5-dp3">
             <connections>
                 <outlet property="contentViewController" destination="lsB-Sx-fCm" id="184-UK-okp"/>

@@ -13,6 +13,7 @@
 		9C297D5D301E6C45009E1202 /* WebKitUpdater.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 9C297D5B301E6C45009E1202 /* WebKitUpdater.tiff */; };
 		9C297D60301E6CD4009E1202 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C297D5E301E6CD4009E1202 /* Security.framework */; };
 		9C297D61301E6CD4009E1202 /* SecurityInterface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C297D5F301E6CD4009E1202 /* SecurityInterface.framework */; };
+		9CF5F3C7301FD71F00120868 /* popover.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CF5F3C6301FD71F00120868 /* popover.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		9C297D5B301E6C45009E1202 /* WebKitUpdater.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = WebKitUpdater.tiff; sourceTree = "<group>"; };
 		9C297D5E301E6CD4009E1202 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		9C297D5F301E6CD4009E1202 /* SecurityInterface.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SecurityInterface.framework; path = System/Library/Frameworks/SecurityInterface.framework; sourceTree = SDKROOT; };
+		9CF5F3C6301FD71F00120868 /* popover.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = popover.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 			children = (
 				9C297D4C301E6C10009E1202 /* WebKit_Updater.h */,
 				9C297D4E301E6C10009E1202 /* WebKit_Updater.m */,
+				9CF5F3C6301FD71F00120868 /* popover.xib */,
 				9C297D5A301E6C45009E1202 /* WebKit_Updater.xib */,
 				9C297D5B301E6C45009E1202 /* WebKitUpdater.tiff */,
 				9C297D4A301E6C10009E1202 /* Supporting Files */,
@@ -147,6 +150,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C297D5D301E6C45009E1202 /* WebKitUpdater.tiff in Resources */,
+				9CF5F3C7301FD71F00120868 /* popover.xib in Resources */,
 				9C297D5C301E6C45009E1202 /* WebKit_Updater.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -242,6 +246,7 @@
 		9C297D58301E6C10009E1202 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "WebKit Updater/Info.plist";
 				INSTALL_PATH = "$(HOME)/Library/PreferencePanes";
@@ -254,6 +259,7 @@
 		9C297D59301E6C10009E1202 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "WebKit Updater/Info.plist";
 				INSTALL_PATH = "$(HOME)/Library/PreferencePanes";
@@ -282,6 +288,7 @@
 				9C297D59301E6C10009E1202 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
