@@ -25,7 +25,7 @@
 	<key>NSMainNibFile</key>
 	<string>WebKit_Updater</string>
 	<key>NSPrefPaneIconFile</key>
-	<string>WebKit_Updater.tiff</string>
+	<string>WebKitUpdater.tiff</string>
 	<key>NSPrefPaneIconLabel</key>
 	<string>WebKit Updater</string>
 	<key>NSPrincipalClass</key>

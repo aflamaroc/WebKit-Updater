@@ -13,11 +13,12 @@
 	
 }
 - (IBAction)showHelpPopover:(id)sender {
-	[_helpPopover showRelativeToRect:[sender bounds] ofView:sender preferredEdge:NSMaxYEdge];
+		[_helpPopover showRelativeToRect:[sender bounds] ofView:sender preferredEdge:NSMaxYEdge];
 }
 
 - (void)mainViewDidLoad
 {
+	_helpPopover.behavior = NSPopoverBehaviorTransient;
 	[_authView setString:"system.preferences"];
 	[_authView setAutoupdate:YES];
 	[_authView setDelegate:self];
