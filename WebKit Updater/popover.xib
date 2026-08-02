@@ -20,7 +20,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" id="C2M-mI-Eex">
                         <font key="font" metaFont="system"/>
-                        <string key="title">This preference pane intends to give a simple easy way to install an updated version of WebKit (the html and javascript parser) made by Wowfunhappy for Mavericks. A simple way to get started using WebKit is to push the "Restore Safari 7 on disk" button, and when that process has finished, push the "Download WebKit" button.</string>
+                        <string key="title">This preference pane intends to give a simple easy way to install an updated version of WebKit (the html and javascript parser) made by Wowfunhappy for Mavericks. A simple way to get started using WebKit is to push the "Restore Safari 7 on disk" button, and when that process has finished, push the "Download WebKit" button. Note that this will not work unless AquaProxy is installed and running on your machine.</string>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>

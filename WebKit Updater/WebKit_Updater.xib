@@ -12,6 +12,8 @@
                 <outlet property="dlWebKitButton" destination="giE-va-YIz" id="sFP-34-f82"/>
                 <outlet property="helpButton" destination="fXw-2T-yym" id="Ug4-1N-Gg7"/>
                 <outlet property="helpPopover" destination="fPL-l5-dp3" id="0tA-u7-cgY"/>
+                <outlet property="log" destination="W33-nb-3gP" id="LeT-y8-Nn9"/>
+                <outlet property="progress" destination="oUk-SC-e7C" id="dE7-h2-pYM"/>
                 <outlet property="s7OTAbutton" destination="2kK-gI-PlL" id="Uny-6y-Q0z"/>
                 <outlet property="s7onDiskButton" destination="dBL-zD-UuN" id="KjW-pP-Fva"/>
             </connections>
@@ -61,6 +63,9 @@
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
+                        <connections>
+                            <action selector="downloadWebkit:" target="-2" id="sMl-gF-3N1"/>
+                        </connections>
                     </button>
                     <button verticalHuggingPriority="750" id="HRn-Ed-Slw">
                         <rect key="frame" x="16" y="217" width="186" height="32"/>
@@ -82,7 +87,7 @@
                         </buttonCell>
                     </button>
                     <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="W33-nb-3gP">
-                        <rect key="frame" x="128" y="266" width="221" height="17"/>
+                        <rect key="frame" x="56" y="266" width="270" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="You shouldn't see this." id="bPe-go-Hhr">
                             <font key="font" metaFont="system"/>
@@ -108,9 +113,9 @@
                         </buttonCell>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="hax-ke-PJK">
-                        <rect key="frame" x="82" y="305" width="125" height="11"/>
+                        <rect key="frame" x="82" y="305" width="128" height="11"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="&quot;This looks like redsn0w&quot; -willa" id="Zgg-9P-AB9">
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="&quot;This looks like redsn0w.&quot; -willa" id="Zgg-9P-AB9">
                             <font key="font" metaFont="system" size="8"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -135,7 +140,7 @@
                         </textFieldCell>
                     </textField>
                     <progressIndicator hidden="YES" maxValue="100" indeterminate="YES" style="bar" id="oUk-SC-e7C">
-                        <rect key="frame" x="364" y="264" width="96" height="20"/>
+                        <rect key="frame" x="332" y="264" width="196" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     </progressIndicator>
                     <button horizontalHuggingPriority="750" verticalHuggingPriority="750" id="fXw-2T-yym">
@@ -158,7 +163,7 @@
                         <rect key="frame" x="20" y="13" width="450" height="58"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     </customView>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="aXr-mN-ztx">
+                    <textField toolTip="Genuinely a really nice person, thanks for all you've done!!!" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="aXr-mN-ztx">
                         <rect key="frame" x="483" y="341" width="167" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Thank you Wowfunhappy!" id="des-pK-vky">

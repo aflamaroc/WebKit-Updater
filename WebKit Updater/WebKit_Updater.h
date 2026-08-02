@@ -16,6 +16,8 @@
 @property (weak) IBOutlet NSButton *s7onDiskButton;
 @property (weak) IBOutlet NSButton *dlWebKitButton;
 @property (strong) IBOutlet NSPopover *helpPopover;
+@property (weak) IBOutlet NSTextField *log;
+@property (weak) IBOutlet NSProgressIndicator *progress;
 
 - (void)mainViewDidLoad;
 - (void)authorizationViewDidDeauthorize:(SFAuthorizationView *)view;
