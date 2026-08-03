@@ -15,41 +15,33 @@
 		[_helpPopover showRelativeToRect:[sender bounds] ofView:sender preferredEdge:NSMaxYEdge];
 }
 - (IBAction)downloadWebkit:(id)sender {
-	[_authView setEnabled:NO];
 	NSLog(@"we are downloading!");
-	__block NSString *webkitDownloadURL;
 	NSURLSession *session = [NSURLSession sharedSession];
 	NSFileManager *fileMan = [NSFileManager defaultManager];
 	NSURLSessionDataTask *releasesDownload = [session dataTaskWithURL:[NSURL URLWithString:@"https://api.github.com/repos/Wowfunhappy/WebKit/releases"] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-		[self setViewsUsable:NO];
+		[self setViewsUsable:NO authview:YES];
 		
 		// Fetch releases JSON from Github
 		[self setLogString:@"Fetching releases JSON."];
 		if (error){
-			[self setLogString:@"Fetching releases failed"];
-			NSLog(@"%@", error.localizedDescription);
-			[_progress stopAnimation:nil];
+			[self stopLogging:@"Fetching Releases JSON Failed" error:error];
 			return;
 		}
-		
 		// Serialize JSON (could fail because of a malformed return
 		NSError *jsonSerializationError = nil;
 		NSArray *releasesArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
 		if (jsonSerializationError){
-			[self setLogString:@"Serialization failed"];
-			[_progress stopAnimation:nil];
-			NSLog(@"%@", jsonSerializationError.localizedDescription);
+			[self stopLogging:@"JSON Serialization Failed" error:jsonSerializationError];
 			return;
 		}
-		
 		// Actually Download WebKit
+		NSString *webkitDownloadURL;
 		webkitDownloadURL = [[[[releasesArray objectAtIndex:0] valueForKey:@"assets"] objectAtIndex:0] valueForKey:@"browser_download_url"];
 		NSLog(@"Downloading asset from github with URL: %@", webkitDownloadURL);
 		[self setLogString:@"Found .zip, downloading"];
 		NSData *webkitRelease = [NSData dataWithContentsOfURL:[NSURL URLWithString:webkitDownloadURL]];
 		if (!webkitRelease){
-			[self setLogString:@"Downloading Release Failed"];
-			[_progress stopAnimation:nil];
+			[self stopLogging:@"Release Failed to Download"];
 			return;
 		}
 		[webkitRelease writeToFile:@"/tmp/Webkit.zip" atomically:YES];
@@ -58,8 +50,7 @@
 		[self setLogString:@"Unzipping Release"];
 		[SSZipArchive unzipFileAtPath:@"/tmp/Webkit.zip" toDestination:@"/tmp/WebkitRelease/"];
 		if (![fileMan fileExistsAtPath:@"/tmp/WebkitRelease/"]){
-			[self setLogString:@"Failed to Unzip WebKit"];
-			[_progress stopAnimation:nil];
+			[self stopLogging:@"Unzipping Release Failed!"];
 			return;
 		}
 		
@@ -70,16 +61,17 @@
 		NSString *WKReleaseDir = [@"/tmp/WebkitRelease/" stringByAppendingString:[[directoryContents filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"NOT (SELF BEGINSWITH '.')"]] firstObject]];
 		NSLog(@"Using directory %@", WKReleaseDir);
 		if (directoryError) {
-			NSLog(@"%@", error.localizedDescription);
-			[self setLogString:@"Failed to copy Frameworks"];
-			[_progress stopAnimation:nil];
+			[self stopLogging:@"Webkit is not present!" error:directoryContents];
 			return;
 		}
-		//[self copyFrameworkFrom:[[@"/tmp/WebkitRelease/" stringByAppendingString:WKReleaseDir] stringByAppendingString:@"/WebKit.framework"] to:@"/System/Library/Frameworks" nuclear:NO];
+		
+		[self copyFrameworkFrom:[WKReleaseDir stringByAppendingString:@"/WebKit.framework"] to:@"/System/Library/Frameworks/WebKit.framework" nuclear:YES];
+		[self copyFrameworkFrom:[WKReleaseDir stringByAppendingString:@"/JavaScriptCore.framework"] to:@"/System/Library/Frameworks/JavaScriptCore.framework" nuclear:YES];
+		[self copyFrameworkFrom:[WKReleaseDir stringByAppendingString:@"/WebKit2.framework"] to:@"/System/Library/PrivateFrameworks/WebKit2.framework" nuclear:YES];
 		
 		// Cleanup code
 		NSError *deletionError = nil;
-		[self setLogString:@"Cleaning Up"];
+		[self setLogString:@"Clearing DYLD Cache & Cleaning Up"];
 		[fileMan removeItemAtPath:@"/tmp/WebkitRelease" error:&deletionError];
 		[fileMan removeItemAtPath:@"/tmp/Webkit.zip" error:&deletionError];
 		if (deletionError) {
@@ -87,14 +79,21 @@
 			[self setLogString:@"Cleanup Failed"];
 			[_progress stopAnimation:nil];
 		}
+		if (!([fileMan fileExistsAtPath:@"/System/Library/Frameworks/WebKit.framework"] && [fileMan fileExistsAtPath:@"/System/Library/Frameworks/JavaScriptCore.framework"] && [fileMan fileExistsAtPath:@"/System/Library/PrivateFrameworks/WebKit2.framework"])){
+			[self stopLogging:@"You'd better have made a backup."];
+			return;
+		}
+			
+		[self stopLogging:@"We're done!"];
+		[self setViewsUsable:YES authview:YES];
 	}];
 	[releasesDownload resume];
 
 }
 
 
-- (void)copyFrameworkFrom:(NSString *)srcFileURL to:(NSString *)destFileURL nuclear:(BOOL)nuclear
-{
+- (void)copyFrameworkFrom:(NSString *)srcFileURL to:(NSString *)destFileURL nuclear:(BOOL)nuclear{
+	NSLog(@"Calling: %@ %@ %@ %@", [[NSBundle bundleForClass:[self class]] pathForResource:@"FrameworkCopier" ofType:nil], srcFileURL, destFileURL, (nuclear ? @"1" : @"0"));
 	char *args[] = {
 		(char *)[srcFileURL UTF8String],
 		(char *)[destFileURL UTF8String],
@@ -103,7 +102,7 @@
 	};
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
 	AuthorizationExecuteWithPrivileges([[_authView authorization] authorizationRef],
-									   [[[NSBundle bundleForClass:self] pathForResource:@"FrameworkCopier" ofType:nil] UTF8String],
+									   [[[NSBundle bundleForClass:[self class]] pathForResource:@"FrameworkCopier" ofType:nil] UTF8String],
 									   kAuthorizationFlagDefaults,
 									   args,
 									   nil);
@@ -121,22 +120,25 @@
 	[_authView setAutoupdate:YES];
 	[_authView setDelegate:self];
 	[_authView updateStatus:self];
+	[_authView setEnabled:YES];
 	_helpPopover.behavior = NSPopoverBehaviorTransient;
 	_helpPopover.contentViewController = [[NSViewController alloc] initWithNibName:@"popover" bundle:[NSBundle bundleForClass:[self class]]];
 }
 - (void) authorizationViewDidAuthorize:(SFAuthorizationView *)view{
 	NSLog(@"i can doo what you want me to dooo");
-	[self setViewsUsable:YES];
+	[self setViewsUsable:YES authview:YES];
 	
 }
 - (void) authorizationViewDidDeauthorize:(SFAuthorizationView *)view{
 	NSLog(@"i cannot do what you want me to doooo");
-	[self setViewsUsable:NO];
+	[self setViewsUsable:NO authview:NO];
 }
-- (void) setViewsUsable:(bool)state{
+- (void) setViewsUsable:(bool)state authview:(bool)authview{
 	[_s7onDiskButton setEnabled:state];
 	[_s7OTAbutton setEnabled:state];
 	[_dlWebKitButton setEnabled:state];
+	if (authview)
+		[_authView setEnabled:state];
 }
 - (void) setLogString:(NSString *)string{
 	[_log setStringValue:string];
@@ -144,10 +146,16 @@
 	[_progress setHidden:NO];
 	[_progress startAnimation:nil];
 }
-- (void) stopLogging{
-	[_log setStringValue:@"Done!"];
+- (void) stopLogging:(NSString *)string error:(NSError *)error{
+	[_log setStringValue:string];
 	[_progress stopAnimation:nil];
-	
+	[self setViewsUsable:YES authview:YES];
+	NSLog(@"%@", error.localizedDescription);
+}
+- (void) stopLogging:(NSString *)string{
+	[_log setStringValue:string];
+	[_progress stopAnimation:nil];
+	[self setViewsUsable:YES authview:YES];
 }
 - (void) hideLog{
 	[_log setHidden:YES];
