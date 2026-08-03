@@ -26,10 +26,10 @@
 		9CF5F3FA3020083A00120868 /* SSZipArchive.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF5F3EF3020083A00120868 /* SSZipArchive.h */; };
 		9CF5F3FB3020083A00120868 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF5F3F03020083A00120868 /* SSZipArchive.m */; };
 		9CF5F4003020094B00120868 /* libz.1.1.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CF5F3FF3020094B00120868 /* libz.1.1.3.dylib */; };
-		9CF5F408302019A700120868 /* RMCopierTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF5F407302019A700120868 /* RMCopierTool.m */; };
 		9CF5F41030201AA000120868 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CF5F40F30201AA000120868 /* Foundation.framework */; };
 		9CF5F41330201AA000120868 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF5F41230201AA000120868 /* main.m */; };
 		9CF5F41730201AA000120868 /* FrameworkCopier.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9CF5F41630201AA000120868 /* FrameworkCopier.1 */; };
+		9CF5F41D302021A500120868 /* FrameworkCopier in Resources */ = {isa = PBXBuildFile; fileRef = 9CF5F40D30201AA000120868 /* FrameworkCopier */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,8 +77,6 @@
 		9CF5F3EF3020083A00120868 /* SSZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSZipArchive.h; sourceTree = "<group>"; };
 		9CF5F3F03020083A00120868 /* SSZipArchive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSZipArchive.m; sourceTree = "<group>"; };
 		9CF5F3FF3020094B00120868 /* libz.1.1.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.1.3.dylib; path = usr/lib/libz.1.1.3.dylib; sourceTree = SDKROOT; };
-		9CF5F4033020165600120868 /* RMCopierTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMCopierTool.m; sourceTree = "<group>"; };
-		9CF5F407302019A700120868 /* RMCopierTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = RMCopierTool.m; path = "WebKit Updater/RMCopierTool.m"; sourceTree = "<group>"; };
 		9CF5F40D30201AA000120868 /* FrameworkCopier */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = FrameworkCopier; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CF5F40F30201AA000120868 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9CF5F41230201AA000120868 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -111,7 +109,6 @@
 		9C297D3D301E6C10009E1202 = {
 			isa = PBXGroup;
 			children = (
-				9CF5F407302019A700120868 /* RMCopierTool.m */,
 				9CF5F3FF3020094B00120868 /* libz.1.1.3.dylib */,
 				9C297D5E301E6CD4009E1202 /* Security.framework */,
 				9C297D5F301E6CD4009E1202 /* SecurityInterface.framework */,
@@ -134,7 +131,6 @@
 		9C297D49301E6C10009E1202 /* WebKit Updater */ = {
 			isa = PBXGroup;
 			children = (
-				9CF5F4033020165600120868 /* RMCopierTool.m */,
 				9C297D4C301E6C10009E1202 /* WebKit_Updater.h */,
 				9C297D4E301E6C10009E1202 /* WebKit_Updater.m */,
 				9CF5F3C6301FD71F00120868 /* popover.xib */,
@@ -300,6 +296,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CF5F41D302021A500120868 /* FrameworkCopier in Resources */,
 				9C297D5D301E6C45009E1202 /* WebKitUpdater.tiff in Resources */,
 				9CF5F3C7301FD71F00120868 /* popover.xib in Resources */,
 				9C297D5C301E6C45009E1202 /* WebKit_Updater.xib in Resources */,
@@ -313,7 +310,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9CF5F408302019A700120868 /* RMCopierTool.m in Sources */,
 				9CF5F3F23020083A00120868 /* ioapi.c in Sources */,
 				9C297D4F301E6C10009E1202 /* WebKit_Updater.m in Sources */,
 				9CF5F3FB3020083A00120868 /* SSZipArchive.m in Sources */,
