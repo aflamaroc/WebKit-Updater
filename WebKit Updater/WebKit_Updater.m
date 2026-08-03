@@ -9,7 +9,7 @@
 
 @implementation WebKit_Updater
 - (IBAction)bugReport:(id)sender {
-	
+	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://github.com/Wowfunhappy/WebKit/issues/new"]];
 }
 - (IBAction)showHelpPopover:(id)sender {
 		[_helpPopover showRelativeToRect:[sender bounds] ofView:sender preferredEdge:NSMaxYEdge];
@@ -67,7 +67,7 @@
 		[self setLogString:@"Copying Release to /System"];
 		NSError *directoryError = nil;
 		NSArray *directoryContents = [fileMan contentsOfDirectoryAtPath:@"/tmp/WebkitRelease/" error:&directoryError];
-		NSString *WKReleaseDir = [[directoryContents filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"NOT (SELF BEGINSWITH '.')"]] firstObject];
+		NSString *WKReleaseDir = [@"/tmp/WebkitRelease/" stringByAppendingString:[[directoryContents filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"NOT (SELF BEGINSWITH '.')"]] firstObject]];
 		NSLog(@"Using directory %@", WKReleaseDir);
 		if (directoryError) {
 			NSLog(@"%@", error.localizedDescription);
@@ -75,10 +75,18 @@
 			[_progress stopAnimation:nil];
 			return;
 		}
-		[self copyFrameworkFrom:[WKReleaseDir stringByAppendingString:""] to:<#(NSString *)#> nuclear:NO];
-		*/
+		//[self copyFrameworkFrom:[[@"/tmp/WebkitRelease/" stringByAppendingString:WKReleaseDir] stringByAppendingString:@"/WebKit.framework"] to:@"/System/Library/Frameworks" nuclear:NO];
 		
-		
+		// Cleanup code
+		NSError *deletionError = nil;
+		[self setLogString:@"Cleaning Up"];
+		[fileMan removeItemAtPath:@"/tmp/WebkitRelease" error:&deletionError];
+		[fileMan removeItemAtPath:@"/tmp/Webkit.zip" error:&deletionError];
+		if (deletionError) {
+			NSLog(@"%@", deletionError.localizedDescription);
+			[self setLogString:@"Cleanup Failed"];
+			[_progress stopAnimation:nil];
+		}
 	}];
 	[releasesDownload resume];
 
