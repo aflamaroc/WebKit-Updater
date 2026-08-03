@@ -15,8 +15,9 @@
 		[_helpPopover showRelativeToRect:[sender bounds] ofView:sender preferredEdge:NSMaxYEdge];
 }
 - (IBAction)downloadWebkit:(id)sender {
+	[_authView setEnabled:NO];
 	NSLog(@"we are downloading!");
-	__block NSMutableString *webkitDownloadURL;
+	__block NSString *webkitDownloadURL;
 	NSURLSession *session = [NSURLSession sharedSession];
 	NSURLSessionDataTask *releasesDownload = [session dataTaskWithURL:[NSURL URLWithString:@"https://api.github.com/repos/Wowfunhappy/WebKit/releases"] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
 		[self setViewsUsable:NO];
@@ -35,16 +36,28 @@
 			[_progress stopAnimation:nil];
 			NSLog(jsonSerializationError.localizedDescription);
 		}
+		
 		webkitDownloadURL = [[[[releasesArray objectAtIndex:0] valueForKey:@"assets"] objectAtIndex:0] valueForKey:@"browser_download_url"];
 		NSLog(@"Downloading asset from github with URL: %@", webkitDownloadURL);
+		[self setLogString:@"Found .zip, downloading"];
+		NSData *webkitRelease = [NSData dataWithContentsOfURL:[NSURL URLWithString:webkitDownloadURL]];
+		if (!webkitRelease){
+			[self setLogString:@"Downloading Release Failed"];
+			[_progress stopAnimation:nil];
+		}
+		
+		[webkitRelease writeToFile:@"/tmp/Webkit.zip" atomically:YES];
+		
+		[self setLogString:@"Unzipping Release"];
+		[SSZipArchive unzipFileAtPath:@"/tmp/Webkit.zip" toDestination:@"/tmp/WebkitRelease/"];
+		[self setLogString:@"Copying Release to /System"];
+
+		AuthorizationExecuteWithPrivileges([[_authView authorization] authorizationRef], [@"wkinstallerscript.sh" UTF8String], kAuthorizationFlagDefaults, nil, nil);
+		
+		
 	}];
 	[releasesDownload resume];
-	[self setLogString:@"Found .zip, downloading"];
-	NSData *webkitRelease = [NSData dataWithContentsOfURL:webkitDownloadURL];
-	if (!webkitRelease){
-		[self setLogString:@"Downloading Release Failed"];
-		[_progress stopAnimation:nil];
-	}
+
 }
 
 - (void)mainViewDidLoad{

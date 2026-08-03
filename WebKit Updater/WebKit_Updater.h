@@ -7,6 +7,7 @@
 
 #import <PreferencePanes/PreferencePanes.h>
 #import <SecurityInterface/SFAuthorizationView.h>
+#import "SSZipArchive.h"
 
 @interface WebKit_Updater : NSPreferencePane
 

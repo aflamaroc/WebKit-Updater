@@ -164,10 +164,19 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     </customView>
                     <textField toolTip="Genuinely a really nice person, thanks for all you've done!!!" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="aXr-mN-ztx">
-                        <rect key="frame" x="483" y="341" width="167" height="17"/>
+                        <rect key="frame" x="499" y="320" width="167" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Thank you Wowfunhappy!" id="des-pK-vky">
                             <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField toolTip="Genuinely a really nice person, thanks for all you've done!!!" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="0pM-IL-LaL">
+                        <rect key="frame" x="414" y="341" width="252" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Make a Time Machine Backup!" id="Yrq-JH-ZPH">
+                            <font key="font" size="16" name="LucidaGrande-Bold"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
