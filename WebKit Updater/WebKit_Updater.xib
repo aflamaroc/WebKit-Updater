@@ -41,7 +41,7 @@
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" id="kGj-YR-Vsu">
                         <rect key="frame" x="205" y="133" width="367" height="34"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Mounts the recovery partition that is hopefully on your computer, and rips Safari 7 from there." id="yhU-2E-4IH">
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Mounts the recovery partition that is hopefully on your computer, and rips Safari 7 from there. Faster than OTA." id="yhU-2E-4IH">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -111,6 +111,9 @@
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
+                        <connections>
+                            <action selector="restoreSafariOnDisk:" target="-2" id="Z31-RQ-Xhc"/>
+                        </connections>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="hax-ke-PJK">
                         <rect key="frame" x="82" y="305" width="128" height="11"/>
@@ -124,7 +127,7 @@
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" id="rED-z9-0Gb">
                         <rect key="frame" x="205" y="89" width="367" height="34"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Downloads Safari 7 from Apple's servers, and downgrades from Safari 9 to Safari 7." id="eDr-W6-fTx">
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Downloads Safari 7 from Apple's servers, and downgrades from Safari 9 to Safari 7. More reliable." id="eDr-W6-fTx">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>

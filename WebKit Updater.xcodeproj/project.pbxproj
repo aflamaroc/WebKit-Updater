@@ -14,17 +14,6 @@
 		9C297D60301E6CD4009E1202 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C297D5E301E6CD4009E1202 /* Security.framework */; };
 		9C297D61301E6CD4009E1202 /* SecurityInterface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C297D5F301E6CD4009E1202 /* SecurityInterface.framework */; };
 		9CF5F3C7301FD71F00120868 /* popover.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CF5F3C6301FD71F00120868 /* popover.xib */; };
-		9CF5F3F13020083A00120868 /* crypt.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF5F3E63020083A00120868 /* crypt.h */; };
-		9CF5F3F23020083A00120868 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 9CF5F3E73020083A00120868 /* ioapi.c */; };
-		9CF5F3F33020083A00120868 /* ioapi.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF5F3E83020083A00120868 /* ioapi.h */; };
-		9CF5F3F43020083A00120868 /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 9CF5F3E93020083A00120868 /* mztools.c */; };
-		9CF5F3F53020083A00120868 /* mztools.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF5F3EA3020083A00120868 /* mztools.h */; };
-		9CF5F3F63020083A00120868 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 9CF5F3EB3020083A00120868 /* unzip.c */; };
-		9CF5F3F73020083A00120868 /* unzip.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF5F3EC3020083A00120868 /* unzip.h */; };
-		9CF5F3F83020083A00120868 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 9CF5F3ED3020083A00120868 /* zip.c */; };
-		9CF5F3F93020083A00120868 /* zip.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF5F3EE3020083A00120868 /* zip.h */; };
-		9CF5F3FA3020083A00120868 /* SSZipArchive.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF5F3EF3020083A00120868 /* SSZipArchive.h */; };
-		9CF5F3FB3020083A00120868 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF5F3F03020083A00120868 /* SSZipArchive.m */; };
 		9CF5F4003020094B00120868 /* libz.1.1.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CF5F3FF3020094B00120868 /* libz.1.1.3.dylib */; };
 		9CF5F41030201AA000120868 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CF5F40F30201AA000120868 /* Foundation.framework */; };
 		9CF5F41330201AA000120868 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF5F41230201AA000120868 /* main.m */; };
@@ -65,17 +54,6 @@
 		9C297D5E301E6CD4009E1202 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		9C297D5F301E6CD4009E1202 /* SecurityInterface.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SecurityInterface.framework; path = System/Library/Frameworks/SecurityInterface.framework; sourceTree = SDKROOT; };
 		9CF5F3C6301FD71F00120868 /* popover.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = popover.xib; sourceTree = "<group>"; };
-		9CF5F3E63020083A00120868 /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
-		9CF5F3E73020083A00120868 /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
-		9CF5F3E83020083A00120868 /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
-		9CF5F3E93020083A00120868 /* mztools.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mztools.c; sourceTree = "<group>"; };
-		9CF5F3EA3020083A00120868 /* mztools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mztools.h; sourceTree = "<group>"; };
-		9CF5F3EB3020083A00120868 /* unzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unzip.c; sourceTree = "<group>"; };
-		9CF5F3EC3020083A00120868 /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unzip.h; sourceTree = "<group>"; };
-		9CF5F3ED3020083A00120868 /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip.c; sourceTree = "<group>"; };
-		9CF5F3EE3020083A00120868 /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
-		9CF5F3EF3020083A00120868 /* SSZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSZipArchive.h; sourceTree = "<group>"; };
-		9CF5F3F03020083A00120868 /* SSZipArchive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSZipArchive.m; sourceTree = "<group>"; };
 		9CF5F3FF3020094B00120868 /* libz.1.1.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.1.3.dylib; path = usr/lib/libz.1.1.3.dylib; sourceTree = SDKROOT; };
 		9CF5F40D30201AA000120868 /* FrameworkCopier */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = FrameworkCopier; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CF5F40F30201AA000120868 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -136,7 +114,6 @@
 				9CF5F3C6301FD71F00120868 /* popover.xib */,
 				9C297D5A301E6C45009E1202 /* WebKit_Updater.xib */,
 				9C297D5B301E6C45009E1202 /* WebKitUpdater.tiff */,
-				9CF5F3FC3020084E00120868 /* SSZipArchive */,
 				9C297D4A301E6C10009E1202 /* Supporting Files */,
 			);
 			path = "WebKit Updater";
@@ -148,32 +125,6 @@
 				9C297D4B301E6C10009E1202 /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		9CF5F3E53020083A00120868 /* minizip */ = {
-			isa = PBXGroup;
-			children = (
-				9CF5F3E63020083A00120868 /* crypt.h */,
-				9CF5F3E73020083A00120868 /* ioapi.c */,
-				9CF5F3E83020083A00120868 /* ioapi.h */,
-				9CF5F3E93020083A00120868 /* mztools.c */,
-				9CF5F3EA3020083A00120868 /* mztools.h */,
-				9CF5F3EB3020083A00120868 /* unzip.c */,
-				9CF5F3EC3020083A00120868 /* unzip.h */,
-				9CF5F3ED3020083A00120868 /* zip.c */,
-				9CF5F3EE3020083A00120868 /* zip.h */,
-			);
-			path = minizip;
-			sourceTree = "<group>";
-		};
-		9CF5F3FC3020084E00120868 /* SSZipArchive */ = {
-			isa = PBXGroup;
-			children = (
-				9CF5F3E53020083A00120868 /* minizip */,
-				9CF5F3EF3020083A00120868 /* SSZipArchive.h */,
-				9CF5F3F03020083A00120868 /* SSZipArchive.m */,
-			);
-			name = SSZipArchive;
 			sourceTree = "<group>";
 		};
 		9CF5F40E30201AA000120868 /* Frameworks */ = {
@@ -209,13 +160,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9CF5F3F93020083A00120868 /* zip.h in Headers */,
-				9CF5F3FA3020083A00120868 /* SSZipArchive.h in Headers */,
-				9CF5F3F33020083A00120868 /* ioapi.h in Headers */,
-				9CF5F3F73020083A00120868 /* unzip.h in Headers */,
 				9C297D4D301E6C10009E1202 /* WebKit_Updater.h in Headers */,
-				9CF5F3F13020083A00120868 /* crypt.h in Headers */,
-				9CF5F3F53020083A00120868 /* mztools.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,12 +255,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9CF5F3F23020083A00120868 /* ioapi.c in Sources */,
 				9C297D4F301E6C10009E1202 /* WebKit_Updater.m in Sources */,
-				9CF5F3FB3020083A00120868 /* SSZipArchive.m in Sources */,
-				9CF5F3F63020083A00120868 /* unzip.c in Sources */,
-				9CF5F3F83020083A00120868 /* zip.c in Sources */,
-				9CF5F3F43020083A00120868 /* mztools.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -491,6 +431,7 @@
 				9CF5F41A30201AA000120868 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

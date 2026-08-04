@@ -48,12 +48,15 @@
 		
 		// Unzip Webkit
 		[self setLogString:@"Unzipping Release"];
-		[SSZipArchive unzipFileAtPath:@"/tmp/Webkit.zip" toDestination:@"/tmp/WebkitRelease/"];
+		NSTask *unzipTask = [[NSTask alloc] init];
+		[unzipTask setLaunchPath:@"/usr/bin/unzip"];
+		[unzipTask setArguments:@[@"-o", @"/tmp/Webkit.zip", @"-d", @"/tmp/WebkitRelease"]];
+		[unzipTask launch];
+		[unzipTask waitUntilExit];
 		if (![fileMan fileExistsAtPath:@"/tmp/WebkitRelease/"]){
 			[self stopLogging:@"Unzipping Release Failed!"];
 			return;
 		}
-		
 		// Copying release to /System/Library/*Frameworks
 		[self setLogString:@"Copying Release to /System"];
 		NSError *directoryError = nil;
@@ -61,7 +64,7 @@
 		NSString *WKReleaseDir = [@"/tmp/WebkitRelease/" stringByAppendingString:[[directoryContents filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"NOT (SELF BEGINSWITH '.')"]] firstObject]];
 		NSLog(@"Using directory %@", WKReleaseDir);
 		if (directoryError) {
-			[self stopLogging:@"Webkit is not present!" error:directoryContents];
+			[self stopLogging:@"Webkit is not present!" error:directoryError];
 			return;
 		}
 		
@@ -83,15 +86,72 @@
 			[self stopLogging:@"You'd better have made a backup."];
 			return;
 		}
-			
+		[self update_dyldSharedCache];
 		[self stopLogging:@"We're done!"];
 		[self setViewsUsable:YES authview:YES];
 	}];
 	[releasesDownload resume];
 
 }
-
-
+- (IBAction)restoreSafariOnDisk:(id)sender {
+	[self setViewsUsable:NO authview:YES];
+	
+	// Locating recovery
+	[self setLogString:@"Locating Recovery"];
+	NSTask *diskutilTask = [[NSTask alloc] init];
+	diskutilTask.launchPath = @"/usr/sbin/diskutil";
+	diskutilTask.arguments = @[@"list"];
+	
+	NSTask *grepTask = [[NSTask alloc] init];
+	grepTask.launchPath = @"/usr/bin/grep";
+	grepTask.arguments = @[@"Recovery"];
+	
+	NSTask *awkTask = [[NSTask alloc] init];
+	awkTask.launchPath = @"/usr/bin/awk";
+	awkTask.arguments = @[@"{print $7}"];
+	
+	NSPipe *pipe1 = [NSPipe pipe];
+	NSPipe *pipe2 = [NSPipe pipe];
+	NSPipe *outputPipe = [NSPipe pipe];
+	
+	diskutilTask.standardOutput = pipe1;
+	grepTask.standardInput = pipe1;
+	grepTask.standardOutput = pipe2;
+	awkTask.standardInput = pipe2;
+	awkTask.standardOutput = outputPipe;
+	
+	[diskutilTask launch];
+	[grepTask launch];
+	[awkTask launch];
+	
+	[diskutilTask waitUntilExit];
+	[grepTask waitUntilExit];
+	[awkTask waitUntilExit];
+	
+	NSData *outputData = [[outputPipe fileHandleForReading] readDataToEndOfFile];
+	NSString *result = [[[NSString alloc] initWithData:outputData encoding:NSUTF8StringEncoding] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+	[self setLogString:@"Mounting Recovery"];
+	NSError *mountError;
+	[[NSFileManager defaultManager] createDirectoryAtPath:@"/tmp/Recovery" withIntermediateDirectories:YES attributes:nil error:&mountError];
+	NSLog(@"%@", result);
+	// Mount Recovery
+	char *args[] = {
+		"-t",
+		"hfs",
+		"-o",
+		"nobrowse",
+		strdup([[@"/dev/" stringByAppendingString:result] UTF8String]),
+		"/tmp/Recovery",
+		NULL
+	};
+	#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+	AuthorizationExecuteWithPrivileges([[_authView authorization] authorizationRef], "/sbin/mount", kAuthorizationFlagDefaults, args, NULL);
+	if ([[NSFileManager defaultManager] fileExistsAtPath:@"/tmp/Recovery/System"]){
+		[self stopLogging:@"Mounting Recovery Failed!"];
+		return;
+	}
+	
+}
 - (void)copyFrameworkFrom:(NSString *)srcFileURL to:(NSString *)destFileURL nuclear:(BOOL)nuclear{
 	NSLog(@"Calling: %@ %@ %@ %@", [[NSBundle bundleForClass:[self class]] pathForResource:@"FrameworkCopier" ofType:nil], srcFileURL, destFileURL, (nuclear ? @"1" : @"0"));
 	char *args[] = {
