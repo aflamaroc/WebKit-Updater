@@ -53,6 +53,7 @@
 		9C297D5B301E6C45009E1202 /* WebKitUpdater.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = WebKitUpdater.tiff; sourceTree = "<group>"; };
 		9C297D5E301E6CD4009E1202 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		9C297D5F301E6CD4009E1202 /* SecurityInterface.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SecurityInterface.framework; path = System/Library/Frameworks/SecurityInterface.framework; sourceTree = SDKROOT; };
+		9CB48E5D30295BCE003113F3 /* Readme.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = Readme.md; sourceTree = "<group>"; };
 		9CF5F3C6301FD71F00120868 /* popover.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = popover.xib; sourceTree = "<group>"; };
 		9CF5F3FF3020094B00120868 /* libz.1.1.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.1.3.dylib; path = usr/lib/libz.1.1.3.dylib; sourceTree = SDKROOT; };
 		9CF5F40D30201AA000120868 /* FrameworkCopier */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = FrameworkCopier; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,6 +88,7 @@
 		9C297D3D301E6C10009E1202 = {
 			isa = PBXGroup;
 			children = (
+				9CB48E5D30295BCE003113F3 /* Readme.md */,
 				9CF5F3FF3020094B00120868 /* libz.1.1.3.dylib */,
 				9C297D5E301E6CD4009E1202 /* Security.framework */,
 				9C297D5F301E6CD4009E1202 /* SecurityInterface.framework */,

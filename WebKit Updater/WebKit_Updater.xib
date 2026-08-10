@@ -85,6 +85,9 @@
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
+                        <connections>
+                            <action selector="restoreSafariOTA:" target="-2" id="FVo-K2-5Qw"/>
+                        </connections>
                     </button>
                     <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="W33-nb-3gP">
                         <rect key="frame" x="56" y="266" width="270" height="17"/>

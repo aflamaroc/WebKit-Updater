@@ -68,9 +68,10 @@
 			return;
 		}
 		
-		[self copyFrameworkFrom:[WKReleaseDir stringByAppendingString:@"/WebKit.framework"] to:@"/System/Library/Frameworks/WebKit.framework" nuclear:YES];
-		[self copyFrameworkFrom:[WKReleaseDir stringByAppendingString:@"/JavaScriptCore.framework"] to:@"/System/Library/Frameworks/JavaScriptCore.framework" nuclear:YES];
-		[self copyFrameworkFrom:[WKReleaseDir stringByAppendingString:@"/WebKit2.framework"] to:@"/System/Library/PrivateFrameworks/WebKit2.framework" nuclear:YES];
+		[self sudoCopy:[WKReleaseDir stringByAppendingString:@"/WebKit.framework"] to:@"/System/Library/Frameworks/WebKit.framework" nuclear:YES];
+		[self sudoCopy:[WKReleaseDir stringByAppendingString:@"/JavaScriptCore.framework"] to:@"/System/Library/Frameworks/JavaScriptCore.framework" nuclear:YES];
+		[self sudoCopy:[WKReleaseDir stringByAppendingString:@"/WebKit2.framework"] to:@"/System/Library/PrivateFrameworks/WebKit2.framework" nuclear:YES];
+		
 		
 		// Cleanup code
 		NSError *deletionError = nil;
@@ -83,12 +84,15 @@
 			[_progress stopAnimation:nil];
 		}
 		if (!([fileMan fileExistsAtPath:@"/System/Library/Frameworks/WebKit.framework"] && [fileMan fileExistsAtPath:@"/System/Library/Frameworks/JavaScriptCore.framework"] && [fileMan fileExistsAtPath:@"/System/Library/PrivateFrameworks/WebKit2.framework"])){
-			[self stopLogging:@"You'd better have made a backup."];
+			[self stopLogging:@"Try running again."];
 			return;
 		}
 		[self update_dyldSharedCache];
 		[self stopLogging:@"We're done!"];
 		[self setViewsUsable:YES authview:YES];
+		 
+		
+		
 	}];
 	[releasesDownload resume];
 
@@ -151,8 +155,74 @@
 		return;
 	}
 	
+	// mounting basesystem
+	
+	[self setLogString:@"Mounting Base System"];
+	NSTask *recoveryTask = [[NSTask alloc] init];
+	[recoveryTask setLaunchPath:@"/usr/bin/hdiutil"];
+	[recoveryTask setArguments:@[@"attach", @"-nobrowse", @"/private/tmp/Recovery/com.apple.recovery.boot/BaseSystem.dmg"]];
+	[recoveryTask launch];
+	[recoveryTask waitUntilExit];
+	if (![[NSFileManager defaultManager] fileExistsAtPath:@"/Volumes/OS X Base System"]) {
+		[self stopLogging:@"Mounting Base System Failed!"];
+		return;
+	}
+	
+	// copying safari 7
+	[self setLogString:@"Copying Safari 7"];
+	[self sudoCopy:@"/Volumes/OS X Base System/Applications/Safari.app" to:@"/Applications/Safari.app" nuclear:true];
+	[self sudoCopy:@"/Volumes/OS X Base System/System/Library/PrivateFrameworks/Safari.framework" to:@"/System/Library/PrivateFrameworks/Safari.framework" nuclear:true];
+	NSString *version = [[[NSDictionary alloc] initWithContentsOfFile:@"/Applications/Safari.app/Contents/Info.plist"] valueForKey:@"CFBundleShortVersionString"];
+	float versionNumber = [version floatValue];
+	NSLog(@"%f", versionNumber);
+	if (versionNumber > 7) {
+		[self stopLogging:@"Safari couldn't be copied!"];
+	}
+	
+	// nuke stagedframeworks
+	[self setLogString:@"Nuking Safari's StagedFrameworks"];
+	char *nukeArgs[] = {
+		"-r",
+		"/System/Library/StagedFrameworks/Safari",
+		NULL
+	};
+	AuthorizationExecuteWithPrivileges([[_authView authorization] authorizationRef], "/bin/rm", kAuthorizationFlagDefaults, nukeArgs, NULL);
+
+	// forget 9
+	[self setLogString:@"Forgetting Safari 9"];
+	char *forgetArgs[] = {
+		"--forget",
+		"com.apple.pkg.Safari9.1.3Mavericks",
+		NULL
+	};
+	AuthorizationExecuteWithPrivileges([[_authView authorization] authorizationRef], "/usr/sbin/pkgutil", kAuthorizationFlagDefaults, forgetArgs, NULL);
+	
+	// cleanup
+	[self setLogString:@"Cleaning Up"];
+	
+	NSTask *unmountTask = [[NSTask alloc] init];
+	[unmountTask setLaunchPath:@"/usr/bin/hdiutil"];
+	[unmountTask setArguments:@[@"detach", @"/private/tmp/Recovery/com.apple.recovery.boot/BaseSystem.dmg"]];
+	[unmountTask launch];
+	[unmountTask waitUntilExit];
+	
+	char *umountArgs[] = {
+		"-f",
+		"/tmp/Recovery",
+		NULL
+	};
+	#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+	AuthorizationExecuteWithPrivileges([[_authView authorization] authorizationRef], "/sbin/umount", kAuthorizationFlagDefaults, umountArgs, NULL);
+	[[NSFileManager defaultManager] removeItemAtPath:@"Recovery" error:nil]; // nonfatal
+	[self stopLogging:@"Done!"];
+	
 }
-- (void)copyFrameworkFrom:(NSString *)srcFileURL to:(NSString *)destFileURL nuclear:(BOOL)nuclear{
+/*- (IBAction)restoreSafariOTA:(id)sender {
+	
+}*/
+- (void) sudoCopy:(NSString *)srcFileURL to:(NSString *)destFileURL nuclear:(BOOL)nuclear{
+	[[NSFileManager defaultManager]createFileAtPath:@"/tmp/fwcopier.lock" contents:nil attributes:nil];
+
 	NSLog(@"Calling: %@ %@ %@ %@", [[NSBundle bundleForClass:[self class]] pathForResource:@"FrameworkCopier" ofType:nil], srcFileURL, destFileURL, (nuclear ? @"1" : @"0"));
 	char *args[] = {
 		(char *)[srcFileURL UTF8String],
@@ -160,12 +230,17 @@
 		(char *)(nuclear ? "1" : "0"),
 		NULL
 	};
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+	
+	// screw SMJobBless
+	#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 	AuthorizationExecuteWithPrivileges([[_authView authorization] authorizationRef],
 									   [[[NSBundle bundleForClass:[self class]] pathForResource:@"FrameworkCopier" ofType:nil] UTF8String],
 									   kAuthorizationFlagDefaults,
 									   args,
 									   nil);
+	while([[NSFileManager defaultManager] fileExistsAtPath:@"/tmp/fwcopier.lock"]){
+		[NSThread sleepForTimeInterval:.1];
+	}
 }
 - (void) update_dyldSharedCache{
 	NSLog(@"Updating Shared Cache");
