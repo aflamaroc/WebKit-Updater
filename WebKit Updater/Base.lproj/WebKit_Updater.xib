@@ -30,7 +30,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" id="UmD-ni-uy1">
-                        <rect key="frame" x="207" y="217" width="365" height="34"/>
+                        <rect key="frame" x="226" y="217" width="409" height="34"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Report a bug in the WebKit project, this is completely optional, but very helpful, please do this!" id="fsm-nD-xrQ">
                             <font key="font" metaFont="system"/>
@@ -39,7 +39,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" id="kGj-YR-Vsu">
-                        <rect key="frame" x="205" y="133" width="367" height="34"/>
+                        <rect key="frame" x="226" y="133" width="403" height="34"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Mounts the recovery partition that is hopefully on your computer, and rips Safari 7 from there. Faster than OTA." id="yhU-2E-4IH">
                             <font key="font" metaFont="system"/>
@@ -128,7 +128,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" id="rED-z9-0Gb">
-                        <rect key="frame" x="205" y="89" width="367" height="34"/>
+                        <rect key="frame" x="226" y="89" width="403" height="34"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Downloads Safari 7 from Apple's servers, and downgrades from Safari 9 to Safari 7. More reliable." id="eDr-W6-fTx">
                             <font key="font" metaFont="system"/>
@@ -137,7 +137,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" id="IL5-cH-zkY">
-                        <rect key="frame" x="205" y="175" width="367" height="34"/>
+                        <rect key="frame" x="226" y="175" width="403" height="34"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Downloads WebKit from Wowfunhappy's github backport, and installs it on your computer." id="n0w-M0-3lO">
                             <font key="font" metaFont="system"/>

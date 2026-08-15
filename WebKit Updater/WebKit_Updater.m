@@ -7,12 +7,15 @@
 
 #import "WebKit_Updater.h"
 
+#define WKLocalizedString(key, comment) \
+NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleForClass:[self class]], (comment))
+
 @implementation WebKit_Updater
 - (IBAction)bugReport:(id)sender {
 	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://github.com/Wowfunhappy/WebKit/issues/new"]];
 }
 - (IBAction)showHelpPopover:(id)sender {
-		[_helpPopover showRelativeToRect:[sender bounds] ofView:sender preferredEdge:NSMaxYEdge];
+	[_helpPopover showRelativeToRect:[sender bounds] ofView:sender preferredEdge:NSMaxYEdge];
 }
 - (IBAction)downloadWebkit:(id)sender {
 	NSLog(@"we are downloading!");
@@ -22,49 +25,49 @@
 		[self setViewsUsable:NO authview:YES];
 		
 		// Fetch releases JSON from Github
-		[self setLogString:@"Fetching releases JSON."];
+		[self setLogString:WKLocalizedString(@"Fetching releases JSON.", @"Status message while fetching GitHub releases list")];
 		if (error){
-			[self stopLogging:@"Fetching Releases JSON Failed" error:error];
+			[self stopLogging:WKLocalizedString(@"Fetching Releases JSON Failed", @"Error message when GitHub releases fetch fails") error:error];
 			return;
 		}
-		// Serialize JSON (could fail because of a malformed return
+		// Serialize JSON (could fail because of a malformed return)
 		NSError *jsonSerializationError = nil;
-		NSArray *releasesArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+		NSArray *releasesArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonSerializationError];
 		if (jsonSerializationError){
-			[self stopLogging:@"JSON Serialization Failed" error:jsonSerializationError];
+			[self stopLogging:WKLocalizedString(@"JSON Serialization Failed", @"Error message when GitHub releases JSON fails to parse") error:jsonSerializationError];
 			return;
 		}
 		// Actually Download WebKit
 		NSString *webkitDownloadURL;
 		webkitDownloadURL = [[[[releasesArray objectAtIndex:0] valueForKey:@"assets"] objectAtIndex:0] valueForKey:@"browser_download_url"];
 		NSLog(@"Downloading asset from github with URL: %@", webkitDownloadURL);
-		[self setLogString:@"Found .zip, downloading"];
+		[self setLogString:WKLocalizedString(@"Found .zip, downloading", @"Status message once release zip URL is found")];
 		NSData *webkitRelease = [NSData dataWithContentsOfURL:[NSURL URLWithString:webkitDownloadURL]];
 		if (!webkitRelease){
-			[self stopLogging:@"Release Failed to Download"];
+			[self stopLogging:WKLocalizedString(@"Release Failed to Download", @"Error message when WebKit release download fails")];
 			return;
 		}
 		[webkitRelease writeToFile:@"/tmp/Webkit.zip" atomically:YES];
 		
 		// Unzip Webkit
-		[self setLogString:@"Unzipping Release"];
+		[self setLogString:WKLocalizedString(@"Unzipping Release", @"Status message while unzipping downloaded release")];
 		NSTask *unzipTask = [[NSTask alloc] init];
 		[unzipTask setLaunchPath:@"/usr/bin/unzip"];
 		[unzipTask setArguments:@[@"-o", @"/tmp/Webkit.zip", @"-d", @"/tmp/WebkitRelease"]];
 		[unzipTask launch];
 		[unzipTask waitUntilExit];
 		if (![fileMan fileExistsAtPath:@"/tmp/WebkitRelease/"]){
-			[self stopLogging:@"Unzipping Release Failed!"];
+			[self stopLogging:WKLocalizedString(@"Unzipping Release Failed!", @"Error message when unzip fails")];
 			return;
 		}
 		// Copying release to /System/Library/*Frameworks
-		[self setLogString:@"Copying Release to /System"];
+		[self setLogString:WKLocalizedString(@"Copying Release to /System", @"Status message while copying frameworks into place")];
 		NSError *directoryError = nil;
 		NSArray *directoryContents = [fileMan contentsOfDirectoryAtPath:@"/tmp/WebkitRelease/" error:&directoryError];
 		NSString *WKReleaseDir = [@"/tmp/WebkitRelease/" stringByAppendingString:[[directoryContents filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"NOT (SELF BEGINSWITH '.')"]] firstObject]];
 		NSLog(@"Using directory %@", WKReleaseDir);
 		if (directoryError) {
-			[self stopLogging:@"Webkit is not present!" error:directoryError];
+			[self stopLogging:WKLocalizedString(@"Webkit is not present!", @"Error message when extracted WebKit release directory is missing") error:directoryError];
 			return;
 		}
 		
@@ -75,33 +78,33 @@
 		
 		// Cleanup code
 		NSError *deletionError = nil;
-		[self setLogString:@"Clearing DYLD Cache & Cleaning Up"];
+		[self setLogString:WKLocalizedString(@"Clearing DYLD Cache & Cleaning Up", @"Status message during cleanup and dyld cache update")];
 		[fileMan removeItemAtPath:@"/tmp/WebkitRelease" error:&deletionError];
 		[fileMan removeItemAtPath:@"/tmp/Webkit.zip" error:&deletionError];
 		if (deletionError) {
 			NSLog(@"%@", deletionError.localizedDescription);
-			[self setLogString:@"Cleanup Failed"];
+			[self setLogString:WKLocalizedString(@"Cleanup Failed", @"Error message when temp file cleanup fails")];
 			[_progress stopAnimation:nil];
 		}
 		if (!([fileMan fileExistsAtPath:@"/System/Library/Frameworks/WebKit.framework"] && [fileMan fileExistsAtPath:@"/System/Library/Frameworks/JavaScriptCore.framework"] && [fileMan fileExistsAtPath:@"/System/Library/PrivateFrameworks/WebKit2.framework"])){
-			[self stopLogging:@"Try running again."];
+			[self stopLogging:WKLocalizedString(@"Try running again.", @"Error message when final framework verification fails")];
 			return;
 		}
 		[self update_dyldSharedCache];
-		[self stopLogging:@"We're done!"];
+		[self stopLogging:WKLocalizedString(@"We're done!", @"Success message when WebKit install completes")];
 		[self setViewsUsable:YES authview:YES];
-		 
+		
 		
 		
 	}];
 	[releasesDownload resume];
-
+	
 }
 - (IBAction)restoreSafariOnDisk:(id)sender {
 	[self setViewsUsable:NO authview:YES];
 	
 	// Locating recovery
-	[self setLogString:@"Locating Recovery"];
+	[self setLogString:WKLocalizedString(@"Locating Recovery", @"Status message while locating Recovery HD partition")];
 	NSTask *diskutilTask = [[NSTask alloc] init];
 	diskutilTask.launchPath = @"/usr/sbin/diskutil";
 	diskutilTask.arguments = @[@"list"];
@@ -134,7 +137,7 @@
 	
 	NSData *outputData = [[outputPipe fileHandleForReading] readDataToEndOfFile];
 	NSString *result = [[[NSString alloc] initWithData:outputData encoding:NSUTF8StringEncoding] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-	[self setLogString:@"Mounting Recovery"];
+	[self setLogString:WKLocalizedString(@"Mounting Recovery", @"Status message while mounting Recovery HD")];
 	NSError *mountError;
 	[[NSFileManager defaultManager] createDirectoryAtPath:@"/tmp/Recovery" withIntermediateDirectories:YES attributes:nil error:&mountError];
 	NSLog(@"%@", result);
@@ -148,48 +151,48 @@
 		"/tmp/Recovery",
 		NULL
 	};
-	#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 	AuthorizationExecuteWithPrivileges([[_authView authorization] authorizationRef], "/sbin/mount", kAuthorizationFlagDefaults, args, NULL);
 	if ([[NSFileManager defaultManager] fileExistsAtPath:@"/tmp/Recovery/System"]){
-		[self stopLogging:@"Mounting Recovery Failed!"];
+		[self stopLogging:WKLocalizedString(@"Mounting Recovery Failed!", @"Error message when Recovery HD mount fails")];
 		return;
 	}
 	
 	// mounting basesystem
 	
-	[self setLogString:@"Mounting Base System"];
+	[self setLogString:WKLocalizedString(@"Mounting Base System", @"Status message while mounting BaseSystem.dmg")];
 	NSTask *recoveryTask = [[NSTask alloc] init];
 	[recoveryTask setLaunchPath:@"/usr/bin/hdiutil"];
 	[recoveryTask setArguments:@[@"attach", @"-nobrowse", @"/private/tmp/Recovery/com.apple.recovery.boot/BaseSystem.dmg"]];
 	[recoveryTask launch];
 	[recoveryTask waitUntilExit];
 	if (![[NSFileManager defaultManager] fileExistsAtPath:@"/Volumes/OS X Base System"]) {
-		[self stopLogging:@"Mounting Base System Failed!"];
+		[self stopLogging:WKLocalizedString(@"Mounting Base System Failed!", @"Error message when BaseSystem.dmg mount fails")];
 		return;
 	}
 	
 	// copying safari 7
-	[self setLogString:@"Copying Safari 7"];
+	[self setLogString:WKLocalizedString(@"Copying Safari 7", @"Status message while copying Safari 7 from Recovery")];
 	[self sudoCopy:@"/Volumes/OS X Base System/Applications/Safari.app" to:@"/Applications/Safari.app" nuclear:true];
 	[self sudoCopy:@"/Volumes/OS X Base System/System/Library/PrivateFrameworks/Safari.framework" to:@"/System/Library/PrivateFrameworks/Safari.framework" nuclear:true];
 	NSString *version = [[[NSDictionary alloc] initWithContentsOfFile:@"/Applications/Safari.app/Contents/Info.plist"] valueForKey:@"CFBundleShortVersionString"];
 	float versionNumber = [version floatValue];
 	NSLog(@"%f", versionNumber);
 	if (versionNumber > 7) {
-		[self stopLogging:@"Safari couldn't be copied!"];
+		[self stopLogging:WKLocalizedString(@"Safari couldn't be copied!", @"Error message when Safari 7 copy verification fails")];
 	}
 	
 	// nuke stagedframeworks
-	[self setLogString:@"Nuking Safari's StagedFrameworks"];
+	[self setLogString:WKLocalizedString(@"Nuking Safari's StagedFrameworks", @"Status message while removing StagedFrameworks")];
 	char *nukeArgs[] = {
 		"-r",
 		"/System/Library/StagedFrameworks/Safari",
 		NULL
 	};
 	AuthorizationExecuteWithPrivileges([[_authView authorization] authorizationRef], "/bin/rm", kAuthorizationFlagDefaults, nukeArgs, NULL);
-
+	
 	// forget 9
-	[self setLogString:@"Forgetting Safari 9"];
+	[self setLogString:WKLocalizedString(@"Forgetting Safari 9", @"Status message while removing Safari 9 package receipt")];
 	char *forgetArgs[] = {
 		"--forget",
 		"com.apple.pkg.Safari9.1.3Mavericks",
@@ -198,7 +201,7 @@
 	AuthorizationExecuteWithPrivileges([[_authView authorization] authorizationRef], "/usr/sbin/pkgutil", kAuthorizationFlagDefaults, forgetArgs, NULL);
 	
 	// cleanup
-	[self setLogString:@"Cleaning Up"];
+	[self setLogString:WKLocalizedString(@"Cleaning Up", @"Status message during final cleanup")];
 	
 	NSTask *unmountTask = [[NSTask alloc] init];
 	[unmountTask setLaunchPath:@"/usr/bin/hdiutil"];
@@ -211,18 +214,25 @@
 		"/tmp/Recovery",
 		NULL
 	};
-	#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 	AuthorizationExecuteWithPrivileges([[_authView authorization] authorizationRef], "/sbin/umount", kAuthorizationFlagDefaults, umountArgs, NULL);
 	[[NSFileManager defaultManager] removeItemAtPath:@"Recovery" error:nil]; // nonfatal
-	[self stopLogging:@"Done!"];
+	[self stopLogging:WKLocalizedString(@"Done!", @"Success message when Safari 7 restore completes")];
 	
 }
-/*- (IBAction)restoreSafariOTA:(id)sender {
+- (IBAction)restoreSafariOTA:(id)sender {
+	NSLog(@"Downloading Safari!");
 	
-}*/
+	// TODO: download from IR server
+	// i chose to download the combo update because wiresharking internet recovery was a PITA
+	// if you can figure this out, PLEASE open a PR
+	[self setLogString:WKLocalizedString(@"Downloading Combo", @"Status message while downloading Safari combo update")];
+	//NSURLSessionDownloadTask *comboUpdateTask =
+	
+}
 - (void) sudoCopy:(NSString *)srcFileURL to:(NSString *)destFileURL nuclear:(BOOL)nuclear{
 	[[NSFileManager defaultManager]createFileAtPath:@"/tmp/fwcopier.lock" contents:nil attributes:nil];
-
+	
 	NSLog(@"Calling: %@ %@ %@ %@", [[NSBundle bundleForClass:[self class]] pathForResource:@"FrameworkCopier" ofType:nil], srcFileURL, destFileURL, (nuclear ? @"1" : @"0"));
 	char *args[] = {
 		(char *)[srcFileURL UTF8String],
@@ -232,7 +242,7 @@
 	};
 	
 	// screw SMJobBless
-	#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 	AuthorizationExecuteWithPrivileges([[_authView authorization] authorizationRef],
 									   [[[NSBundle bundleForClass:[self class]] pathForResource:@"FrameworkCopier" ofType:nil] UTF8String],
 									   kAuthorizationFlagDefaults,

@@ -1,0 +1,48 @@
+
+/* Class = "NSTextFieldCell"; title = "Mavericks WebKit Updater"; ObjectID = "AHd-mx-LzL"; */
+"AHd-mx-LzL.title" = "Mavericks WebKit Updater";
+
+/* Class = "NSWindow"; title = "≪ do not localize ≫"; ObjectID = "F0z-JX-Cv5"; */
+"F0z-JX-Cv5.title" = "≪ do not localize ≫";
+
+/* Class = "NSButtonCell"; title = "Report a bug in WebKit"; ObjectID = "JcZ-jo-JY9"; */
+"JcZ-jo-JY9.title" = "Report a bug in WebKit";
+
+/* Class = "NSTextFieldCell"; title = "Make a Time Machine Backup or be ready to reinstall!"; ObjectID = "Yrq-JH-ZPH"; */
+"Yrq-JH-ZPH.title" = "Make a Time Machine Backup or be ready to reinstall!";
+
+/* Class = "NSButtonCell"; title = "Restore Safari 7 OTA"; ObjectID = "ZL7-61-sWs"; */
+"ZL7-61-sWs.title" = "Restore Safari 7 OTA";
+
+/* Class = "NSTextFieldCell"; title = "\"This looks like redsn0w.\" -willa"; ObjectID = "Zgg-9P-AB9"; */
+"Zgg-9P-AB9.title" = "\"This looks like redsn0w.\" -willa";
+
+/* Class = "NSTextField"; ibShadowedToolTip = "Genuinely a really nice person, thanks for all you've done!!!"; ObjectID = "aXr-mN-ztx"; */
+"aXr-mN-ztx.ibShadowedToolTip" = "Genuinely a really nice person, thanks for all you've done!!!";
+
+/* Class = "NSButtonCell"; title = "Download WebKit"; ObjectID = "b9b-e8-Ccu"; */
+"b9b-e8-Ccu.title" = "Download WebKit";
+
+/* Class = "NSTextFieldCell"; title = "You shouldn't see this."; ObjectID = "bPe-go-Hhr"; */
+"bPe-go-Hhr.title" = "You shouldn't see this.";
+
+/* Class = "NSButtonCell"; title = "Restore Safari 7 on disk"; ObjectID = "cnb-rz-GoS"; */
+"cnb-rz-GoS.title" = "Restore Safari 7 on disk";
+
+/* Class = "NSTextFieldCell"; title = "Thank you Wowfunhappy!"; ObjectID = "des-pK-vky"; */
+"des-pK-vky.title" = "Thank you Wowfunhappy!";
+
+/* Class = "NSTextFieldCell"; title = "Downloads Safari 7 from Apple's servers, and downgrades from Safari 9 to Safari 7. More reliable."; ObjectID = "eDr-W6-fTx"; */
+"eDr-W6-fTx.title" = "Downloads Safari 7 from Apple's servers, and downgrades from Safari 9 to Safari 7. More reliable.";
+
+/* Class = "NSTextFieldCell"; title = "Report a bug in the WebKit project, this is completely optional, but very helpful, please do this!"; ObjectID = "fsm-nD-xrQ"; */
+"fsm-nD-xrQ.title" = "Report a bug in the WebKit project, this is completely optional, but very helpful, please do this!";
+
+/* Class = "NSTextFieldCell"; title = "Made with ♥︎ by _sudo11"; ObjectID = "l1j-94-nUF"; */
+"l1j-94-nUF.title" = "Made with ♥︎ by _sudo11";
+
+/* Class = "NSTextFieldCell"; title = "Downloads WebKit from Wowfunhappy's github backport, and installs it on your computer."; ObjectID = "n0w-M0-3lO"; */
+"n0w-M0-3lO.title" = "Downloads WebKit from Wowfunhappy's github backport, and installs it on your computer.";
+
+/* Class = "NSTextFieldCell"; title = "Mounts the recovery partition that is hopefully on your computer, and rips Safari 7 from there. Faster than OTA."; ObjectID = "yhU-2E-4IH"; */
+"yhU-2E-4IH.title" = "Mounts the recovery partition that is hopefully on your computer, and rips Safari 7 from there. Faster than OTA.";

@@ -9,10 +9,11 @@
 /* Begin PBXBuildFile section */
 		9C297D4D301E6C10009E1202 /* WebKit_Updater.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C297D4C301E6C10009E1202 /* WebKit_Updater.h */; };
 		9C297D4F301E6C10009E1202 /* WebKit_Updater.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C297D4E301E6C10009E1202 /* WebKit_Updater.m */; };
-		9C297D5C301E6C45009E1202 /* WebKit_Updater.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C297D5A301E6C45009E1202 /* WebKit_Updater.xib */; };
 		9C297D5D301E6C45009E1202 /* WebKitUpdater.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 9C297D5B301E6C45009E1202 /* WebKitUpdater.tiff */; };
 		9C297D60301E6CD4009E1202 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C297D5E301E6CD4009E1202 /* Security.framework */; };
 		9C297D61301E6CD4009E1202 /* SecurityInterface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C297D5F301E6CD4009E1202 /* SecurityInterface.framework */; };
+		9CEC69A13030FA060034196B /* WebKit_Updater.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CEC69A33030FA060034196B /* WebKit_Updater.xib */; };
+		9CEC69AA3030FB5D0034196B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9CEC69A63030FB5D0034196B /* Localizable.strings */; };
 		9CF5F3C7301FD71F00120868 /* popover.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CF5F3C6301FD71F00120868 /* popover.xib */; };
 		9CF5F4003020094B00120868 /* libz.1.1.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CF5F3FF3020094B00120868 /* libz.1.1.3.dylib */; };
 		9CF5F41030201AA000120868 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CF5F40F30201AA000120868 /* Foundation.framework */; };
@@ -45,15 +46,19 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9C0C91A830312F5E009B6525 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/WebKit_Updater.xib; sourceTree = "<group>"; };
+		9C0C91AA30312F68009B6525 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/WebKit_Updater.strings; sourceTree = "<group>"; };
+		9C0C91AB30312F8B009B6525 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/WebKit_Updater.strings; sourceTree = "<group>"; };
 		9C297D47301E6C10009E1202 /* WebKit Updater.prefPane */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "WebKit Updater.prefPane"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C297D4B301E6C10009E1202 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9C297D4C301E6C10009E1202 /* WebKit_Updater.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebKit_Updater.h; sourceTree = "<group>"; };
 		9C297D4E301E6C10009E1202 /* WebKit_Updater.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebKit_Updater.m; sourceTree = "<group>"; };
-		9C297D5A301E6C45009E1202 /* WebKit_Updater.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebKit_Updater.xib; sourceTree = "<group>"; };
 		9C297D5B301E6C45009E1202 /* WebKitUpdater.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = WebKitUpdater.tiff; sourceTree = "<group>"; };
 		9C297D5E301E6CD4009E1202 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		9C297D5F301E6CD4009E1202 /* SecurityInterface.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SecurityInterface.framework; path = System/Library/Frameworks/SecurityInterface.framework; sourceTree = SDKROOT; };
 		9CB48E5D30295BCE003113F3 /* Readme.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = Readme.md; sourceTree = "<group>"; };
+		9CEC69A73030FB5D0034196B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
+		9CEC69B23030FC600034196B /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9CF5F3C6301FD71F00120868 /* popover.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = popover.xib; sourceTree = "<group>"; };
 		9CF5F3FF3020094B00120868 /* libz.1.1.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.1.3.dylib; path = usr/lib/libz.1.1.3.dylib; sourceTree = SDKROOT; };
 		9CF5F40D30201AA000120868 /* FrameworkCopier */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = FrameworkCopier; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -113,8 +118,9 @@
 			children = (
 				9C297D4C301E6C10009E1202 /* WebKit_Updater.h */,
 				9C297D4E301E6C10009E1202 /* WebKit_Updater.m */,
+				9CEC69A53030FB5D0034196B /* en.lproj */,
 				9CF5F3C6301FD71F00120868 /* popover.xib */,
-				9C297D5A301E6C45009E1202 /* WebKit_Updater.xib */,
+				9CEC69A33030FA060034196B /* WebKit_Updater.xib */,
 				9C297D5B301E6C45009E1202 /* WebKitUpdater.tiff */,
 				9C297D4A301E6C10009E1202 /* Supporting Files */,
 			);
@@ -127,6 +133,14 @@
 				9C297D4B301E6C10009E1202 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9CEC69A53030FB5D0034196B /* en.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				9CEC69A63030FB5D0034196B /* Localizable.strings */,
+			);
+			path = en.lproj;
 			sourceTree = "<group>";
 		};
 		9CF5F40E30201AA000120868 /* Frameworks */ = {
@@ -226,6 +240,7 @@
 			knownRegions = (
 				en,
 				Base,
+				es,
 			);
 			mainGroup = 9C297D3D301E6C10009E1202;
 			productRefGroup = 9C297D48301E6C10009E1202 /* Products */;
@@ -243,10 +258,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CEC69AA3030FB5D0034196B /* Localizable.strings in Resources */,
 				9CF5F41D302021A500120868 /* FrameworkCopier in Resources */,
 				9C297D5D301E6C45009E1202 /* WebKitUpdater.tiff in Resources */,
 				9CF5F3C7301FD71F00120868 /* popover.xib in Resources */,
-				9C297D5C301E6C45009E1202 /* WebKit_Updater.xib in Resources */,
+				9CEC69A13030FA060034196B /* WebKit_Updater.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,6 +294,28 @@
 			targetProxy = 9CF5F41B30201ABE00120868 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		9CEC69A33030FA060034196B /* WebKit_Updater.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9C0C91A830312F5E009B6525 /* Base */,
+				9C0C91AA30312F68009B6525 /* en */,
+				9C0C91AB30312F8B009B6525 /* es */,
+			);
+			name = WebKit_Updater.xib;
+			sourceTree = "<group>";
+		};
+		9CEC69A63030FB5D0034196B /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9CEC69A73030FB5D0034196B /* en */,
+				9CEC69B23030FC600034196B /* es */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		9C297D55301E6C10009E1202 /* Debug */ = {
